@@ -31,7 +31,7 @@ class App extends Component {
 
         <Articles articles={ARTICLES}/>
 
-        <p>Learn MobX in <a href="#">Taming this state in React</a></p>
+        <p>Learn MobX in <a href="http://localhost:3000/">Taming this state in React</a></p>
       </div>
     );
   }
