@@ -17,6 +17,17 @@ const ARTICLES = [
   { id: '11', title: 'Complete Course to learn Redux and MobX', url: 'https://roadtoreact.com/' },
 ];
 
+// searchTermにマッチしたらtrueを返す
+const applyFilter = (searchTerm) => (article) =>
+  article.title.toLowerCase().includes(searchTerm.toLowerCase());
+
+// ↓と同じ意味
+// const applyFilter = (searchTerm) => {
+//   return (article) => {
+//     return article.title.toLowerCase().includes(searchTerm.toLowerCase());
+//   }
+// };
+
 @observer
 class App extends Component {
   @observable searchTerm = '';
@@ -29,7 +40,7 @@ class App extends Component {
           <p>Search</p>
         </Search>
 
-        <Articles articles={ARTICLES}/>
+        <Articles articles={ARTICLES.filter(applyFilter(this.searchTerm))}/>
 
         <p>Learn MobX in <a href="http://localhost:3000/">Taming this state in React</a></p>
       </div>
