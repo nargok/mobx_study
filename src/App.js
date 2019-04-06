@@ -17,18 +17,34 @@ const ARTICLES = [
   { id: '11', title: 'Complete Course to learn Redux and MobX', url: 'https://roadtoreact.com/' },
 ];
 
+@observer
 class App extends Component {
+  @observable searchTerm = '';
+
   render() {
     return (
       <div className="App">
         <h1>MobX Study</h1>
+        <Search value={this.searchTerm} onSearch={event => this.searchTerm = event.target.value} >
+          <p>Search</p>
+        </Search>
 
         <Articles articles={ARTICLES}/>
 
+        <p>Learn MobX in <a href="#">Taming this state in React</a></p>
       </div>
     );
   }
 }
+
+const Search = ({ value, onSearch, children }) =>
+  <div>
+    {children} <input
+      value={value}
+      onChange={onSearch}
+      type="text"
+    />
+  </div>
 
 const Articles = ({ articles }) =>
   <ul>
